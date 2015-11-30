@@ -35,8 +35,6 @@ environment:
 
 
 install:
-  - ps: "ls"
-  - ps: "ECHO %CMD_IN_ENV%"
 
   - ECHO "Filesystem root:"
   - ps: "ls \"C:/\""
@@ -69,15 +67,14 @@ install:
 #  - "%CMD_IN_ENV% pip install -r dev-requirements.txt"
 
 build_script:
-  - ps: "ECHO %CMD_IN_ENV%"
   # Build the compiled extension
-  - "%CMD_IN_ENV% python setup.py build install"
+  - "%CMD_IN_ENV% python setup.py build install -vvvv"
   - "%CMD_IN_ENV% pip install nose flake8 hacking"
 
 test_script:
   # Run the project tests
-  - "%CMD_IN_ENV% python setup.py flake8"
-  - "%CMD_IN_ENV% python setup.py nosetests -a '!gpu' tests/chainer_tests"
+  - "%CMD_IN_ENV% python flake8"
+  - "%CMD_IN_ENV% python nosetests -a '!gpu' tests/chainer_tests"
 
 #after_test:
 #  # If tests are successful, create binary packages for the project.
