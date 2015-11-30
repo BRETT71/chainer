@@ -36,6 +36,7 @@ environment:
 
 install:
   - ps: "ls"
+  - ps: "echo %CMD_IN_ENV%"
 
   - ECHO "Filesystem root:"
   - ps: "ls \"C:/\""
